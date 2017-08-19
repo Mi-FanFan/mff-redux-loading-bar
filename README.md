@@ -1,14 +1,7 @@
 # React Redux Loading Bar
 
-[![npm version](https://img.shields.io/npm/v/react-redux-loading-bar.svg?style=flat-square)](https://www.npmjs.com/package/react-redux-loading-bar)
-[![build status](https://img.shields.io/travis/mironov/react-redux-loading-bar/master.svg?style=flat-square)](https://travis-ci.org/mironov/react-redux-loading-bar)
-[![coverage status](https://coveralls.io/repos/github/mironov/react-redux-loading-bar/badge.svg?branch=master)](https://coveralls.io/github/mironov/react-redux-loading-bar?branch=master)
-[![npm downloads](https://img.shields.io/npm/dm/react-redux-loading-bar.svg?style=flat)](https://www.npmjs.com/package/react-redux-loading-bar)
-[![dependency status](https://david-dm.org/mironov/react-redux-loading-bar.svg)](https://david-dm.org/mironov/react-redux-loading-bar)
-
 A React component that provides Loading Bar (aka Progress Bar) for long running tasks.
 
-![Demo GIF](http://d.pr/i/JbwN+)
 
 Consists of:
 
@@ -16,14 +9,10 @@ Consists of:
 * Redux reducer — manages loading bar's part of the store
 * (optional) Redux middleware — automatically shows and hides Loading Bar for actions with promises
 
-## Examples
-
-See [Demo](http://mironov.github.io/react-redux-loading-bar/) or its [source code](https://github.com/mironov/react-redux-loading-bar/tree/gh-pages/src).
-
 ## Installation
 
 ```bash
-npm install --save react-redux-loading-bar
+yarn add mff-redux-loading-bar
 ```
 
 ## Usage
@@ -31,7 +20,7 @@ npm install --save react-redux-loading-bar
 Mount the `LoadingBar` component anywhere in your application:
 
 ```jsx
-import LoadingBar from 'react-redux-loading-bar'
+import LoadingBar from 'mff-redux-loading-bar'
 
 export default class Header extends React.Component {
   render() {
@@ -50,7 +39,7 @@ Install the reducer to the store:
 
 ```jsx
 import { combineReducers } from 'redux'
-import { loadingBarReducer } from 'react-redux-loading-bar'
+import { loadingBarReducer } from 'mff-redux-loading-bar'
 
 const reducer = combineReducers({
   // app reducers
@@ -58,7 +47,7 @@ const reducer = combineReducers({
 })
 ```
 
-## Usage with [`redux-promise-middleware`](https://github.com/pburtchaell/redux-promise-middleware)
+## Usage default
 
 Apply middleware to automatically show and hide loading bar on actions with promises:
 
@@ -69,7 +58,6 @@ import rootReducer from './reducers'
 
 const store = createStore(
   rootReducer,
-  // promise middleware
   applyMiddleware(loadingBarMiddleware())
 )
 ```
@@ -80,14 +68,14 @@ You can configure promise type suffixes that are used in your project:
 
 ```jsx
 import { createStore, applyMiddleware } from 'redux'
-import { loadingBarMiddleware } from 'react-redux-loading-bar'
+import { loadingBarMiddleware } from 'mff-redux-loading-bar'
 import rootReducer from './reducers'
 
 const store = createStore(
   rootReducer,
   applyMiddleware(
     loadingBarMiddleware({
-      promiseTypeSuffixes: ['REQUEST', 'SUCCESS', 'FAILURE'],
+      promiseTypeSuffixes: ['PENDING', 'FULFILLED', 'REJECTED'],
     })
   )
 )
@@ -127,27 +115,6 @@ export function* fetchData() {
   }
 }
 ```
-
-## Usage with [`immutable-js`](https://github.com/facebook/immutable-js)
-
-You can change component import line if your top level redux store object is `immutable`.
-
-```jsx
-import { ImmutableLoadingBar as LoadingBar } from 'react-redux-loading-bar'
-
-// Use LoadingBar component as usual
-```
-
-## Usage with jQuery Ajax Requests
-
-If you happen to use jQuery for Ajax requests, you can dispatch `SHOW`/`HIDE` actions on `ajaxStart`/`ajaxStop` global events:
-
-```jsx
-$(document).on('ajaxStart', this.props.actions.showLoading)
-$(document).on('ajaxStop', this.props.actions.hideLoading)
-```
-
-See [a demo](http://mironov.github.io/react-redux-loading-bar/?ajax) or checkout [the code](https://github.com/mironov/react-redux-loading-bar/blob/gh-pages/src/demo_ajax.js).
 
 ## Styling
 
@@ -191,11 +158,3 @@ You can dispatch the `resetLoading` action to ultimately hide Loading Bar even w
 npm test
 ```
 
-## Contributing
-
-In lieu of a formal styleguide, take care to maintain the existing coding style.
-Add unit tests for any new or changed functionality. Lint and test your code.
-
-To see what has changed in recent versions of Loading Bar, see the [CHANGELOG](https://github.com/mironov/react-redux-loading-bar/blob/master/CHANGELOG.md).
-
-Licensed MIT. Copyright 2016-current Anton Mironov.
