@@ -53,7 +53,7 @@ Apply middleware to automatically show and hide loading bar on actions with prom
 
 ```jsx
 import { createStore, applyMiddleware } from 'redux'
-import { loadingBarMiddleware } from 'react-redux-loading-bar'
+import { loadingBarMiddleware } from 'mff-redux-loading-bar'
 import rootReducer from './reducers'
 
 const store = createStore(
@@ -81,14 +81,12 @@ const store = createStore(
 )
 ```
 
-If you're not using `redux-promise-middleware` or any other promise middleware, you can skip installing the `loadingBarMiddleware()` and dispatch `SHOW`/`HIDE` actions manually. The other option is to write your own middleware that will be similar to the [bundled one](https://github.com/mironov/react-redux-loading-bar/blob/master/src/loading_bar_middleware.js).
-
 ## Usage without middleware
 
 You can dispatch `SHOW`/`HIDE` actions wherever you want by importing the corresponding action creators:
 
 ```jsx
-import { showLoading, hideLoading } from 'react-redux-loading-bar'
+import { showLoading, hideLoading } from 'mff-redux-loading-bar'
 
 dispatch(showLoading())
 // do long running stuff
@@ -103,7 +101,7 @@ Install the `loadingBarReducer()` and mount Loading Bar in your application.
 You can import and dispatch `showLoading` and `hideLoading` from your sagas.
 
 ```jsx
-import { showLoading, hideLoading } from 'react-redux-loading-bar'
+import { showLoading, hideLoading } from 'mff-redux-loading-bar'
 
 export function* fetchData() {
   try {
