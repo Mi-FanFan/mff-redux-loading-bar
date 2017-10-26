@@ -1,17 +1,15 @@
-import LoadingBar from './loading_bar'
-import loadingBarMiddleware from './loading_bar_middleware'
-import {
-  hideLoading,
-  loadingBarReducer,
-  resetLoading,
-  showLoading,
-} from './loading_bar_reducer'
+import nprogressMiddleware from './middleware'
+import nprogressReducer from './reducer'
+import NProgress from './NProgressComponent'
+import { beginTask, endTask,resetTask } from './actions'
+
 
 export {
-  hideLoading,
-  loadingBarMiddleware,
-  loadingBarReducer,
-  resetLoading,
-  showLoading,
-}
-export default LoadingBar
+  nprogressMiddleware,
+  nprogressReducer,
+  beginTask,
+  endTask,
+  resetTask,
+};
+export default NProgress
+

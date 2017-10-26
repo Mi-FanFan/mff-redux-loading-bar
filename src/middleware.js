@@ -1,4 +1,4 @@
-import { showLoading, hideLoading } from './loading_bar_reducer'
+import { beginTask, endTask } from './actions'
 
 const defaultTypeSuffixes = ['REQUEST', 'SUCCESS', 'FAILURE']
 
@@ -14,10 +14,9 @@ export default function loadingBarMiddleware(config = {}) {
       const isRejected = new RegExp(`${REJECTED}$`, 'g')
 
       if (action.type.match(isPending)) {
-        dispatch(showLoading())
-      } else if (action.type.match(isFulfilled) ||
-                 action.type.match(isRejected)) {
-        dispatch(hideLoading())
+        dispatch(beginTask())
+      } else if (action.type.match(isFulfilled) || action.type.match(isRejected)) {
+        dispatch(endTask())
       }
     }
 

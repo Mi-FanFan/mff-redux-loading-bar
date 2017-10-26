@@ -1,19 +1,20 @@
 {
   "name": "mff-redux-loading-bar",
-  "version": "1.0.0",
+  "version": "2.0.0-beta.2",
   "description": "Simple Loading Bar for Redux and React",
   "main": "build/index.js",
   "typings": "index.d.ts",
   "scripts": {
     "build": "babel src -d build",
     "build:watch": "npm run build -- --watch",
+    "clean":"rimraf build",
     "lint": "`npm bin`/eslint src/ spec/",
     "test": "`npm bin`/mocha --compilers js:babel-core/register spec/",
     "test:watch": "npm run test -- --watch",
     "test:coverage": "`npm bin`/istanbul cover -x 'spec/**' `npm bin`/_mocha -- -u exports --compilers js:babel-register spec/",
     "test:coveralls": "npm run test:coverage && node ./node_modules/coveralls/bin/coveralls.js < coverage/lcov.info",
     "pkgfiles": "pkgfiles",
-    "prepare":"npm run build"
+    "prepare": "npm run clean && npm run build"
   },
   "repository": {
     "type": "git",
@@ -66,9 +67,11 @@
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
     "react-test-renderer": "^15.5.4",
-    "redux": "^3.5.2"
+    "redux": "^3.5.2",
+    "rimraf": "^2.6.2"
   },
   "dependencies": {
+    "nprogress": "^0.2.0",
     "prop-types": "^15.5.6"
   }
 }

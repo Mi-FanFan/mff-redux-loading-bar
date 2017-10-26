@@ -1,23 +1,18 @@
-import { Component, CSSProperties } from 'react';
-import { Middleware, Reducer, Action } from 'redux';
+import {Component} from 'react';
+import {Action, Middleware, Reducer} from 'redux';
 
-export interface LoadingBarProps {
-  style?: CSSProperties;
-  className?: string;
-  actions?: Object;
-  updateTime?: number;
-  maxProgress?: number;
-  progressIncrease?: number;
-  showFastActions?: boolean;
+export interface NProgressProps {
+  color ?: string;
+  nprogress?: Object;
 }
-export default class LoadingBar extends Component<LoadingBarProps, {}> {}
+export default class NProgress extends Component<NProgressProps, {}> {}
 
 export interface MiddlewareConfig {
   promiseTypeSuffixes?: string[];
 }
-export function loadingBarMiddleware(config?: MiddlewareConfig): Middleware;
+export function nprogressMiddleware(config?: MiddlewareConfig): Middleware;
 
-export const loadingBarReducer: Reducer<any>;
-export function showLoading(): Action;
-export function hideLoading(): Action;
-export function resetLoading(): Action;
+export const nprogressReducer: Reducer<any>;
+export function beginTask(): Action;
+export function endTask(): Action;
+export function resetTask(): Action;
